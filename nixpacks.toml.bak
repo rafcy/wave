@@ -1,17 +1,8 @@
-[provider]
-php = { disable = true }  # ← Disable Nixpacks' PHP logic
-
 [phases.setup]
 nixPkgs = ["...", "php81", "redis", "php81Extensions.redis", "python311Packages.supervisor", "libevent", "jemalloc"]
 
 [phases.build]
 cmds = [
-    "composer install",
-    "php artisan migrate",
-    "php artisan db:seed",
-    "npm install",
-    "npm run build",
-
     "echo extension=$(find /nix/store -name redis.so | head -n 1) >> $(php --ini | grep 'Additional .ini files parsed' | awk '{print $NF}')",
     # Ensure necessary directories are created
     "mkdir -p /etc/supervisor/conf.d/",
