@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["...", "php81", "redis", "php81Extensions.redis", "python311Packages.supervisor", "libevent", "jemalloc"]
+nixPkgs = ["...", "php82", "redis", "php82Extensions.redis", "python311Packages.supervisor", "libevent", "jemalloc"]
 
 [phases.build]
 cmds = [
