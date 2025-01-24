@@ -1,8 +1,9 @@
 [phases.setup]
-nixPkgs = ["...", "redis", "php82Extensions.redis", "python311Packages.supervisor", "libevent", "jemalloc"]
+nixPkgs = ["...", "php82", "redis", "php82Extensions.redis", "python311Packages.supervisor", "libevent", "jemalloc"]
 
 [phases.build]
 cmds = [
+    "composer install",
     "echo extension=$(find /nix/store -name redis.so | head -n 1) >> $(php --ini | grep 'Additional .ini files parsed' | awk '{print $NF}')",
     # Ensure necessary directories are created
     "mkdir -p /etc/supervisor/conf.d/",
